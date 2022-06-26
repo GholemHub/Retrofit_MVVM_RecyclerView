@@ -26,7 +26,7 @@ class UserInfoFragment : Fragment() {
 
 
         bindingFragmentUserInfo.infoNameTV.text = UserBridge.login
-        bindingFragmentUserInfo.infoAPITV.text = UserBridge.id.toString()
+        bindingFragmentUserInfo.infoAPITV.text = "GitUser API"
 
         val imageUri = UserBridge.avatar_url
         val ivBasicImage = bindingFragmentUserInfo.infoLogoIV

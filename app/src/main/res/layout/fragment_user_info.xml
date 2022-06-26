@@ -23,6 +23,7 @@
             android:id="@+id/info_name_TV"
             android:layout_width="136dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/info_logo_IV"

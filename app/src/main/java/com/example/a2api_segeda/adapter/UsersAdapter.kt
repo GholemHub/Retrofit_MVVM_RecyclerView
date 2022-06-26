@@ -59,7 +59,7 @@ class UsersAdapter: RecyclerView.Adapter<UsersAdapter.MyViewHolder>() {
         }
 
         holder.name_tv.text = myList[position].login
-        holder.api_tv.text = myList[position].id.toString()
+        holder.api_tv.text = "GitUser API"
 
         val imageUri = myList[position].avatar_url
         val ivBasicImage = holder.logo_iv
