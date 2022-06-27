@@ -23,7 +23,7 @@ import com.example.a2api_segeda.viewModel.MainViewModelFactory
 class RecyclerViewFragment : Fragment() {
 
 
-    private lateinit var viewModel: MainViewModel
+    //private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,34 +33,18 @@ class RecyclerViewFragment : Fragment() {
         bindingFragmentRecyclerView = DataBindingUtil.inflate<FragmentRecyclerViewBinding>(inflater,
             R.layout.fragment_recycler_view, container, false)
 
-        bindingFragmentRecyclerView.RecyclerView
 
+
+        SetupAdapter()
+
+        return bindingFragmentRecyclerView.root
+    }
+
+    private fun SetupAdapter() {
         var adapter = UsersAdapter()
         bindingFragmentRecyclerView.RecyclerView.adapter = adapter
         bindingFragmentRecyclerView.RecyclerView.layoutManager = LinearLayoutManager(context)
         adapter.notifyDataSetChanged()
 
-
-        val repository = Repository()
-        val viewModelFactory = MainViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory)
-            .get(MainViewModel::class.java)
-
-        viewModel.getPost()
-
-        viewModel.myPosts.observe(MainActivityContext, Observer{response ->
-            if(response.isSuccessful) {
-                response.body()?.let {
-                    adapter.setData(it)
-                }
-
-            }else{
-                Log.d("TAG", response.errorBody().toString())
-
-            }
-        })
-
-
-        return bindingFragmentRecyclerView.root
     }
 }

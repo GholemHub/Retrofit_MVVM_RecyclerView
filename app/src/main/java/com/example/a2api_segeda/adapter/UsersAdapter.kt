@@ -12,17 +12,16 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a2api_segeda.R
+import com.example.a2api_segeda.data.User
 import com.example.a2api_segeda.model.MainRepository.Companion.MainActivityContext
 import com.example.a2api_segeda.model.MainRepository.Companion.UserBridge
 import com.example.a2api_segeda.model.MainRepository.Companion.bindingFragmentRecyclerView
+import com.example.a2api_segeda.model.MainRepository.Companion.roomList
 import com.example.a2api_segeda.model.Post
 import com.squareup.picasso.Picasso
 
 
 class UsersAdapter: RecyclerView.Adapter<UsersAdapter.MyViewHolder>() {
-
-
-    private var myList = emptyList<Post>()
 
     inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
@@ -46,22 +45,22 @@ class UsersAdapter: RecyclerView.Adapter<UsersAdapter.MyViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return myList.size
+        return roomList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         holder.itemUser.setOnClickListener {
-            UserBridge = myList[position]
+            UserBridge = roomList[position]
             Navigation.findNavController(bindingFragmentRecyclerView.root)
                 .navigate(R.id.action_recyclerViewFragment_to_userInfoFragment2)
 
         }
 
-        holder.name_tv.text = myList[position].login
+        holder.name_tv.text = roomList[position].name
         holder.api_tv.text = "GitUser API"
 
-        val imageUri = myList[position].avatar_url
+        val imageUri = roomList[position].logo
         val ivBasicImage = holder.logo_iv
 
         val picasso = Picasso.get()
@@ -69,8 +68,8 @@ class UsersAdapter: RecyclerView.Adapter<UsersAdapter.MyViewHolder>() {
 
     }
 
-    fun setData(newList: List<Post>){
-        myList = newList
+    fun setData(newList: List<User>){
+        roomList = newList
         notifyDataSetChanged()
     }
 

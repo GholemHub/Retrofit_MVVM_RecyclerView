@@ -25,18 +25,24 @@ class UserInfoFragment : Fragment() {
             R.layout.fragment_user_info, container, false)
 
 
-        bindingFragmentUserInfo.infoNameTV.text = UserBridge.login
+        InterfaceBuilder()
+
+
+
+        return bindingFragmentUserInfo.root
+    }
+
+    private fun InterfaceBuilder() {
+        bindingFragmentUserInfo.infoNameTV.text = UserBridge.name
         bindingFragmentUserInfo.infoAPITV.text = "GitUser API"
 
-        val imageUri = UserBridge.avatar_url
+        val imageUri = UserBridge.logo
         val ivBasicImage = bindingFragmentUserInfo.infoLogoIV
 
         val picasso = Picasso.get()
         picasso.load(imageUri).into(ivBasicImage)
 
 
-
-        return bindingFragmentUserInfo.root
     }
 
 }
